@@ -1,0 +1,19 @@
+<style>
+    /* active header item design */
+    .active-link {
+        background-color: #00C85C !important;
+        color: white !important;
+    }
+</style>
+
+<script>
+    const currentUrl = window.location.href;
+
+    const links = document.querySelectorAll('ul.nav-links-t li a');
+
+    links.forEach(link => {
+        if (link.href === currentUrl) {
+            link.classList.add('active-link');
+        }
+    });
+</script>
