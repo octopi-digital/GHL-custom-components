@@ -7,13 +7,13 @@
     <title>Custom Audio Player</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        .wrapper {
+        .wrapper-wp {
             width: 100%;
             display: flex;
             justify-content: center;
         }
 
-        .audio-player {
+        .audio-player-wp {
             display: flex;
             align-items: center;
             justify-content: space-around;
@@ -23,14 +23,14 @@
             box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
         }
 
-        .controls-left,
-        .controls-right {
+        .controls-left-wp,
+        .controls-right-wp {
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .controls-middle {
+        .controls-middle-wp {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -56,13 +56,13 @@
             color: #B1984F;
         }
 
-        .progress-bar {
+        .progress-bar-wp {
             display: grid;
             align-items: center;
             gap: 5px;
         }
 
-        .seek-bar {
+        .seek-bar-wp {
             width: 400px;
             height: 8px;
             background-color: #ddd;
@@ -71,26 +71,26 @@
             cursor: pointer;
         }
 
-        .play-bar {
+        .play-bar-wp {
             width: 0;
             height: 100%;
             background-color: #B1984F;
         }
 
-        .time,
-        .duration {
+        .time-wp,
+        .duration-wp {
             font-size: 12px;
         }
 
-        .title {
+        .title-wp {
             font-size: 20px;
             text-align: center;
             font-weight: 500px;
             margin: 5px 0;
         }
 
-        .volume-bar {
-            width: 100px; /* Adjust width as needed */
+        .volume-bar-wp {
+            width: 100px;
             height: 6px;
             background-color: #ddd;
             margin: 0 5px;
@@ -100,184 +100,162 @@
             cursor: pointer;
         }
 
-        .volume-bar-value {
+        .volume-bar-value-wp {
             height: 100%;
             background-color: #B1984F;
             transition: width 0.1s linear;
-            width: 80%; /* Set initial volume fill here */
+            width: 80%;
         }
 
-        .controlar {
+        .controlar-wp {
             display: flex;
             justify-content: space-between;
             padding: 0 10px;
         }
 
         @media only screen and (max-width: 768px) {
-            .audio-player {
+            .audio-player-wp {
                 display: flex;
                 flex-direction: column-reverse;
                 gap: 20px;
             }
 
-            .seek-bar {
+            .seek-bar-wp {
                 width: 200px;
             }
         }
     </style>
 </head>
 
-<body data-rsssl=1 data-rsssl=1 data-rsssl=1 data-rsssl=1 data-rsssl=1 data-rsssl=1 data-rsssl=1>
-    <div class="wrapper">
-        <div class="audio-player">
-            <div class="controls-left">
-                <button id="prev" title="Previous track"><i class="fas fa-backward"></i></button>
-                <button id="play-pause" title="Play"><i class="fas fa-play"></i></button>
-                <button id="stop" title="Stop"><i class="fas fa-stop"></i></button>
-                <button id="next" title="Next track"><i class="fas fa-forward"></i></button>
+<body data-rsssl=1>
+    <div class="wrapper-wp">
+        <div class="audio-player-wp">
+            <div class="controls-left-wp">
+                <button id="prev-wp" title="Previous track"><i class="fas fa-backward"></i></button>
+                <button id="play-pause-wp" title="Play"><i class="fas fa-play"></i></button>
+                <button id="stop-wp" title="Stop"><i class="fas fa-stop"></i></button>
+                <button id="next-wp" title="Next track"><i class="fas fa-forward"></i></button>
             </div>
-            <div class="controls-middle">
-                <div id="track-title" class="title">Track Title</div>
-                <div class="progress-bar">
-                    <div id="seek-bar" class="seek-bar">
-                        <div id="play-bar" class="play-bar"></div>
+            <div class="controls-middle-wp">
+                <div id="track-title-wp" class="title-wp">Track Title</div>
+                <div class="progress-bar-wp">
+                    <div id="seek-bar-wp" class="seek-bar-wp">
+                        <div id="play-bar-wp" class="play-bar-wp"></div>
                     </div>
-                    <div class="controlar">
-                        <div id="current-time" class="time">00:00</div>
-                        <div id="duration" class="duration">00:00</div>
+                    <div class="controlar-wp">
+                        <div id="current-time-wp" class="time-wp">00:00</div>
+                        <div id="duration-wp" class="duration-wp">00:00</div>
                     </div>
                 </div>
             </div>
-            <div class="controls-right dec">
-                <button id="mute" title="Mute"><i class="fas fa-volume-up"></i></button>
-                <div class="volume-bar" id="volume-bar">
-                    <div id="volume-bar-value" class="volume-bar-value"></div>
+            <div class="controls-right-wp dec-wp">
+                <button id="mute-wp" title="Mute"><i class="fas fa-volume-up"></i></button>
+                <div class="volume-bar-wp" id="volume-bar-wp">
+                    <div id="volume-bar-value-wp" class="volume-bar-value-wp"></div>
                 </div>
             </div>
         </div>
-        <audio id="audio" controls style="display: none;">
+        <audio id="audio-wp" controls style="display: none;">
             <source src="" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
     </div>
     <script>
-        const audio = document.getElementById('audio');
-        const playPauseBtn = document.getElementById('play-pause');
-        const stopBtn = document.getElementById('stop');
-        const prevBtn = document.getElementById('prev');
-        const nextBtn = document.getElementById('next');
-        const muteBtn = document.getElementById('mute');
-        const seekBar = document.getElementById('seek-bar');
-        const playBar = document.getElementById('play-bar');
-        const currentTimeElem = document.getElementById('current-time');
-        const durationElem = document.getElementById('duration');
-        const volumeBar = document.getElementById('volume-bar');
-        const volumeBarValue = document.getElementById('volume-bar-value');
-        const trackTitle = document.getElementById('track-title');
+        const audio_wp = document.getElementById('audio-wp');
+        const playPauseBtn_wp = document.getElementById('play-pause-wp');
+        const stopBtn_wp = document.getElementById('stop-wp');
+        const prevBtn_wp = document.getElementById('prev-wp');
+        const nextBtn_wp = document.getElementById('next-wp');
+        const muteBtn_wp = document.getElementById('mute-wp');
+        const seekBar_wp = document.getElementById('seek-bar-wp');
+        const playBar_wp = document.getElementById('play-bar-wp');
+        const currentTimeElem_wp = document.getElementById('current-time-wp');
+        const durationElem_wp = document.getElementById('duration-wp');
+        const volumeBar_wp = document.getElementById('volume-bar-wp');
+        const volumeBarValue_wp = document.getElementById('volume-bar-value-wp');
+        const trackTitle_wp = document.getElementById('track-title-wp');
 
-        let isPlaying = false;
-        let currentTrack = 0;
+        let isPlaying_wp = false;
+        let currentTrack_wp = 0;
 
-        const playlist = [
+        const playlist_wp = [
             {
                 title: 'Surah Fatiha',
                 src: 'https://uidf.org/wp-content/uploads/2024/07/Quran_-1.-Surah-Al-Fatihah-The-Opener_-Arabic-and-English-translation-HD_cut_88sec.mp3'
             }
-           
-            
         ];
 
-        function loadTrack(index) {
-            if (index >= 0 && index < playlist.length) {
-                const wasPlaying = isPlaying; // Remember current play state
-                pauseTrack(); // Pause current track
+        function loadTrack_wp(index) {
+            if (index >= 0 && index < playlist_wp.length) {
+                const wasPlaying_wp = isPlaying_wp;
+                pauseTrack_wp();
 
-                audio.src = playlist[index].src;
-                trackTitle.textContent = playlist[index].title;
-                audio.load();
+                audio_wp.src = playlist_wp[index].src;
+                trackTitle_wp.textContent = playlist_wp[index].title;
+                audio_wp.load();
 
-                if (wasPlaying) {
-                    playTrack(); // Resume playing if it was playing before
+                if (wasPlaying_wp) {
+                    playTrack_wp();
                 }
             }
         }
 
-        function playTrack() {
-            audio.play();
-            playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-            isPlaying = true;
+        function playTrack_wp() {
+            audio_wp.play();
+            playPauseBtn_wp.innerHTML = '<i class="fas fa-pause"></i>';
+            isPlaying_wp = true;
         }
 
-        function pauseTrack() {
-            audio.pause();
-            playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-            isPlaying = false;
+        function pauseTrack_wp() {
+            audio_wp.pause();
+            playPauseBtn_wp.innerHTML = '<i class="fas fa-play"></i>';
+            isPlaying_wp = false;
         }
 
-        playPauseBtn.addEventListener('click', () => {
-            if (isPlaying) {
-                pauseTrack();
+        playPauseBtn_wp.addEventListener('click', () => {
+            if (isPlaying_wp) {
+                pauseTrack_wp();
             } else {
-                playTrack();
+                playTrack_wp();
             }
         });
 
-        stopBtn.addEventListener('click', () => {
-            pauseTrack();
-            audio.currentTime = 0;
+        stopBtn_wp.addEventListener('click', () => {
+            pauseTrack_wp();
+            audio_wp.currentTime = 0;
         });
 
-        audio.addEventListener('timeupdate', () => {
-            const progress = (audio.currentTime / audio.duration) * 100;
-            playBar.style.width = progress + '%';
+        audio_wp.addEventListener('timeupdate', () => {
+            const progress_wp = (audio_wp.currentTime / audio_wp.duration) * 100;
+            playBar_wp.style.width = progress_wp + '%';
 
-            const currentMinutes = Math.floor(audio.currentTime / 60);
-            const currentSeconds = Math.floor(audio.currentTime % 60);
-            currentTimeElem.textContent = `${String(currentMinutes).padStart(2, '0')}:${String(currentSeconds).padStart(2, '0')}`;
+            const currentMinutes_wp = Math.floor(audio_wp.currentTime / 60);
+            const currentSeconds_wp = Math.floor(audio_wp.currentTime % 60);
+            currentTimeElem_wp.textContent = `${String(currentMinutes_wp).padStart(2, '0')}:${String(currentSeconds_wp).padStart(2, '0')}`;
 
-            if (isNaN(audio.duration)) {
-                durationElem.textContent = '00:00';
+            if (isNaN(audio_wp.duration)) {
+                durationElem_wp.textContent = '00:00';
             } else {
-                const durationMinutes = Math.floor(audio.duration / 60);
-                const durationSeconds = Math.floor(audio.duration % 60);
-                durationElem.textContent = `${String(durationMinutes).padStart(2, '0')}:${String(durationSeconds).padStart(2, '0')}`;
+                const durationMinutes_wp = Math.floor(audio_wp.duration / 60);
+                const durationSeconds_wp = Math.floor(audio_wp.duration % 60);
+                durationElem_wp.textContent = `${String(durationMinutes_wp).padStart(2, '0')}:${String(durationSeconds_wp).padStart(2, '0')}`;
             }
         });
 
-        seekBar.addEventListener('click', (e) => {
-            const percent = e.offsetX / seekBar.offsetWidth;
-            audio.currentTime = percent * audio.duration;
+        volumeBar_wp.addEventListener('click', (e) => {
+            const clickPosition_wp = e.offsetX / volumeBar_wp.offsetWidth;
+            audio_wp.volume = clickPosition_wp;
+            volumeBarValue_wp.style.width = clickPosition_wp * 100 + '%';
         });
 
-        muteBtn.addEventListener('click', () => {
-            audio.muted = !audio.muted;
-            muteBtn.innerHTML = audio.muted ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-up"></i>';
+        muteBtn_wp.addEventListener('click', () => {
+            audio_wp.muted = !audio_wp.muted;
+            muteBtn_wp.innerHTML = audio_wp.muted ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-up"></i>';
         });
 
-        volumeBar.addEventListener('click', (e) => {
-            const percent = e.offsetX / volumeBar.offsetWidth;
-            audio.volume = percent;
-            volumeBarValue.style.width = percent * 100 + '%';
-        });
-
-        prevBtn.addEventListener('click', () => {
-            currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
-            loadTrack(currentTrack);
-        });
-
-        nextBtn.addEventListener('click', () => {
-            currentTrack = (currentTrack + 1) % playlist.length;
-            loadTrack(currentTrack);
-        });
-
-        // Set initial volume to 80%
-        audio.volume = 0.8;
-        volumeBarValue.style.width = audio.volume * 100 + '%';
-
-        // Initial load
-        loadTrack(currentTrack);
+        loadTrack_wp(currentTrack_wp);
+        audio_wp.volume = 0.8;
     </script>
-
 </body>
 
 </html>
