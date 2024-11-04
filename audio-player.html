@@ -7,6 +7,7 @@
     <title>Custom Audio Player</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* hello world */
         .wrapper-wp {
             width: 100%;
             display: flex;
@@ -37,22 +38,22 @@
             margin: 0 20px;
         }
 
-        button {
+        .control-button {
             height: 50px;
             width: 50px;
             font-size: 18px;
             justify-self: center;
-            border: solid #B1984F 2px !important;
+            border: solid #B1984F 2px;
             padding: 10px;
-            border-radius: 50% !important;
-            color: #B1984F !important;
+            border-radius: 50%;
+            color: #B1984F;
             font-size: 16px;
             margin: 0 5px;
-            background: #d1cece49 !important;
+            background: #d1cece49;
             cursor: pointer;
         }
 
-        button:hover {
+        .control-button:hover {
             color: #B1984F;
         }
 
@@ -85,7 +86,7 @@
         .title-wp {
             font-size: 20px;
             text-align: center;
-            font-weight: 500px;
+            font-weight: 500;
             margin: 5px 0;
         }
 
@@ -105,6 +106,10 @@
             background-color: #B1984F;
             transition: width 0.1s linear;
             width: 80%;
+        }
+
+        .audio-hidden {
+            display: none;
         }
 
         .controlar-wp {
@@ -127,14 +132,14 @@
     </style>
 </head>
 
-<body data-rsssl=1>
+<body>
     <div class="wrapper-wp">
         <div class="audio-player-wp">
             <div class="controls-left-wp">
-                <button id="prev-wp" title="Previous track"><i class="fas fa-backward"></i></button>
-                <button id="play-pause-wp" title="Play"><i class="fas fa-play"></i></button>
-                <button id="stop-wp" title="Stop"><i class="fas fa-stop"></i></button>
-                <button id="next-wp" title="Next track"><i class="fas fa-forward"></i></button>
+                <button id="prev-wp" class="control-button" title="Previous track"><i class="fas fa-backward"></i></button>
+                <button id="play-pause-wp" class="control-button" title="Play"><i class="fas fa-play"></i></button>
+                <button id="stop-wp" class="control-button" title="Stop"><i class="fas fa-stop"></i></button>
+                <button id="next-wp" class="control-button" title="Next track"><i class="fas fa-forward"></i></button>
             </div>
             <div class="controls-middle-wp">
                 <div id="track-title-wp" class="title-wp">Track Title</div>
@@ -148,14 +153,14 @@
                     </div>
                 </div>
             </div>
-            <div class="controls-right-wp dec-wp">
-                <button id="mute-wp" title="Mute"><i class="fas fa-volume-up"></i></button>
+            <div class="controls-right-wp">
+                <button id="mute-wp" class="control-button" title="Mute"><i class="fas fa-volume-up"></i></button>
                 <div class="volume-bar-wp" id="volume-bar-wp">
                     <div id="volume-bar-value-wp" class="volume-bar-value-wp"></div>
                 </div>
             </div>
         </div>
-        <audio id="audio-wp" controls style="display: none;">
+        <audio id="audio-wp" class="audio-hidden">
             <source src="" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
