@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Audio Player</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .audio-player {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 30px 50px;
+            width: 100%;
+            border-radius: 5px;
+            box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+        }
+
+        .controls-left,
+        .controls-right {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .controls-middle {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 20px;
+        }
+
+        button {
+            height: 50px;
+            width: 50px;
+            font-size: 18px;
+            justify-self: center;
+            border: solid #B1984F 2px !important;
+            padding: 10px;
+            border-radius: 50% !important;
+            color: #B1984F !important;
+            font-size: 16px;
+            margin: 0 5px;
+            background: #d1cece49 !important;
+            cursor: pointer;
+        }
+
+        button:hover {
+            color: #B1984F;
+        }
+
+        .progress-bar {
+            display: grid;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .seek-bar {
+            width: 400px;
+            height: 8px;
+            background-color: #ddd;
+            overflow: hidden;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        .play-bar {
+            width: 0;
+            height: 100%;
+            background-color: #B1984F;
+        }
+
+        .time,
+        .duration {
+            font-size: 12px;
+        }
+
+        .title {
+            font-size: 20px;
+            text-align: center;
+            font-weight: 500px;
+            margin: 5px 0;
+        }
+
+        .volume-bar {
+            width: 100px; /* Adjust width as needed */
+            height: 6px;
+            background-color: #ddd;
+            margin: 0 5px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .volume-bar-value {
+            height: 100%;
+            background-color: #B1984F;
+            transition: width 0.1s linear;
+            width: 80%; /* Set initial volume fill here */
+        }
+
+        .controlar {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .audio-player {
+                display: flex;
+                flex-direction: column-reverse;
+                gap: 20px;
+            }
+
+            .seek-bar {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body data-rsssl=1 data-rsssl=1 data-rsssl=1 data-rsssl=1 data-rsssl=1 data-rsssl=1 data-rsssl=1>
+    <div class="wrapper">
+        <div class="audio-player">
+            <div class="controls-left">
+                <button id="prev" title="Previous track"><i class="fas fa-backward"></i></button>
+                <button id="play-pause" title="Play"><i class="fas fa-play"></i></button>
+                <button id="stop" title="Stop"><i class="fas fa-stop"></i></button>
+                <button id="next" title="Next track"><i class="fas fa-forward"></i></button>
+            </div>
+            <div class="controls-middle">
+                <div id="track-title" class="title">Track Title</div>
+                <div class="progress-bar">
+                    <div id="seek-bar" class="seek-bar">
+                        <div id="play-bar" class="play-bar"></div>
+                    </div>
+                    <div class="controlar">
+                        <div id="current-time" class="time">00:00</div>
+                        <div id="duration" class="duration">00:00</div>
+                    </div>
+                </div>
+            </div>
+            <div class="controls-right dec">
+                <button id="mute" title="Mute"><i class="fas fa-volume-up"></i></button>
+                <div class="volume-bar" id="volume-bar">
+                    <div id="volume-bar-value" class="volume-bar-value"></div>
+                </div>
+            </div>
+        </div>
+        <audio id="audio" controls style="display: none;">
+            <source src="" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+    <script>
+        const audio = document.getElementById('audio');
+        const playPauseBtn = document.getElementById('play-pause');
+        const stopBtn = document.getElementById('stop');
+        const prevBtn = document.getElementById('prev');
+        const nextBtn = document.getElementById('next');
+        const muteBtn = document.getElementById('mute');
+        const seekBar = document.getElementById('seek-bar');
+        const playBar = document.getElementById('play-bar');
+        const currentTimeElem = document.getElementById('current-time');
+        const durationElem = document.getElementById('duration');
+        const volumeBar = document.getElementById('volume-bar');
+        const volumeBarValue = document.getElementById('volume-bar-value');
+        const trackTitle = document.getElementById('track-title');
+
+        let isPlaying = false;
+        let currentTrack = 0;
+
+        const playlist = [
+            {
+                title: 'Surah Fatiha',
+                src: 'https://uidf.org/wp-content/uploads/2024/07/Quran_-1.-Surah-Al-Fatihah-The-Opener_-Arabic-and-English-translation-HD_cut_88sec.mp3'
+            }
+           
+            
+        ];
+
+        function loadTrack(index) {
+            if (index >= 0 && index < playlist.length) {
+                const wasPlaying = isPlaying; // Remember current play state
+                pauseTrack(); // Pause current track
+
+                audio.src = playlist[index].src;
+                trackTitle.textContent = playlist[index].title;
+                audio.load();
+
+                if (wasPlaying) {
+                    playTrack(); // Resume playing if it was playing before
+                }
+            }
+        }
+
+        function playTrack() {
+            audio.play();
+            playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            isPlaying = true;
+        }
+
+        function pauseTrack() {
+            audio.pause();
+            playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+            isPlaying = false;
+        }
+
+        playPauseBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                pauseTrack();
+            } else {
+                playTrack();
+            }
+        });
+
+        stopBtn.addEventListener('click', () => {
+            pauseTrack();
+            audio.currentTime = 0;
+        });
+
+        audio.addEventListener('timeupdate', () => {
+            const progress = (audio.currentTime / audio.duration) * 100;
+            playBar.style.width = progress + '%';
+
+            const currentMinutes = Math.floor(audio.currentTime / 60);
+            const currentSeconds = Math.floor(audio.currentTime % 60);
+            currentTimeElem.textContent = `${String(currentMinutes).padStart(2, '0')}:${String(currentSeconds).padStart(2, '0')}`;
+
+            if (isNaN(audio.duration)) {
+                durationElem.textContent = '00:00';
+            } else {
+                const durationMinutes = Math.floor(audio.duration / 60);
+                const durationSeconds = Math.floor(audio.duration % 60);
+                durationElem.textContent = `${String(durationMinutes).padStart(2, '0')}:${String(durationSeconds).padStart(2, '0')}`;
+            }
+        });
+
+        seekBar.addEventListener('click', (e) => {
+            const percent = e.offsetX / seekBar.offsetWidth;
+            audio.currentTime = percent * audio.duration;
+        });
+
+        muteBtn.addEventListener('click', () => {
+            audio.muted = !audio.muted;
+            muteBtn.innerHTML = audio.muted ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-up"></i>';
+        });
+
+        volumeBar.addEventListener('click', (e) => {
+            const percent = e.offsetX / volumeBar.offsetWidth;
+            audio.volume = percent;
+            volumeBarValue.style.width = percent * 100 + '%';
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
+            loadTrack(currentTrack);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentTrack = (currentTrack + 1) % playlist.length;
+            loadTrack(currentTrack);
+        });
+
+        // Set initial volume to 80%
+        audio.volume = 0.8;
+        volumeBarValue.style.width = audio.volume * 100 + '%';
+
+        // Initial load
+        loadTrack(currentTrack);
+    </script>
+
+</body>
+
+</html>
