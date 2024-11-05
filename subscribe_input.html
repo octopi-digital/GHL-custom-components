@@ -1,0 +1,138 @@
+<section>
+    <style>
+        .contentst {
+            width: 360px;
+            height: 50px;
+            box-shadow: 2px 4px 10px rgba(0, 0, 0, .2);
+            border-radius: 60px;
+            overflow: hidden;
+        }
+
+        .subscriptionst {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .subscriptionst .add-emailst {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            outline: none;
+            padding: 0 20px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .subscriptionst .submit-emailst {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: calc(100% - 2px);
+            width: 110px;
+            border: none;
+            border-radius: 60px;
+            outline: none;
+            margin: 1px;
+            padding: 0 20px;
+            cursor: pointer;
+            background: #62387A;
+            color: #FFFFFF;
+            font-size: 16px;
+            font-weight: 500;
+            transition: width .35s ease-in-out, background .35s ease-in-out;
+        }
+
+        .subscriptionst.done .submit-emailst {
+            width: calc(100% - 2px);
+            background: #FF66C4;
+        }
+
+        .subscriptionst .submit-emailst .before-submitst,
+        .subscriptionst .submit-emailst .after-submitst {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            line-height: 48px;
+            transition: visibility .35s ease-in-out, opacity .35s ease-in-out;
+        }
+
+        .subscriptionst.done .submit-emailst .before-submitst,
+        .subscriptionst:not(.done) .submit-emailst .after-submitst {
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        .subscriptionst .submit-emailst .after-submitst {
+            transition-delay: .35s;
+        }
+
+        .subscriptionst:not(.done) .submit-emailst .before-submitst,
+        .subscriptionst.done .submit-emailst .after-submitst {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        @media only screen and (max-width: 575px) {
+            .contentst {
+                width: 100%;
+                height: auto;
+                border-radius: 20px;
+                padding: 10px;
+            }
+
+            .subscriptionst {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .subscriptionst .add-emailst {
+                position: relative;
+                width: 100%;
+                height: 50px;
+                margin-bottom: 10px;
+                border-radius: 20px;
+            }
+
+            .subscriptionst .submit-emailst {
+                position: relative;
+                width: 100%;
+                height: 50px;
+                border-radius: 20px;
+            }
+
+            .subscriptionst .submit-emailst .before-submitst,
+            .subscriptionst .submit-emailst .after-submitst {
+                line-height: 50px;
+            }
+
+            .subscriptionst.done .submit-emailst {
+                width: 100%;
+                height: 50px;
+            }
+        }
+    </style>
+    <div class="containerst">
+        <div class="contentst">
+            <form class="subscriptionst">
+                <input class="add-emailst" type="email" placeholder="subscribe@me.now">
+                <button class="submit-emailst" type="button">
+                    <span class="before-submitst">Subscribe</span>
+                    <span class="after-submitst">Thank you for subscribing!</span>
+                </button>
+            </form>
+        </div>
+    </div>
+    <script>
+        document.querySelector('.submit-emailst').addEventListener('mousedown', (e) => {
+            e.preventDefault();
+            document.querySelector('.subscriptionst').classList.add('done');
+        });
+    </script>
+</section>
