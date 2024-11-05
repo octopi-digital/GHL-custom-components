@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Testimonial Slider</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+    <style>
+        /* General styles */
+       
+
+        /* Slider container */
+        .testimonial-slider-rt {
+            text-align: center;
+            max-width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-slider-rt h2 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .highlight-rt {
+            color: #66b96b;
+        }
+
+        /* Slider and testimonial card styles */
+        .slider-rt {
+            display: flex;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .slider-inner-rt {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .card-rt {
+            min-width: 25%; /* Default - Show 4 cards at a time */
+            box-sizing: border-box;
+            padding: 20px;
+            background-color: #e8f7e8;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 0 10px;
+            transition: transform 0.3s;
+        }
+
+        .card-rt h3 {
+            color: #66b96b;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .stars-rt {
+            font-size: 20px;
+            color: #ffc107;
+        }
+
+        .badge-rt {
+            display: block;
+            margin-top: 10px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* Slider controls */
+        .slider-controls-rt button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.3);
+            border: none;
+            color: white;
+            padding: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 45px;
+            height: 45px;
+            transition: background-color 0.3s;
+        }
+
+        .slider-controls-rt button:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        /* Position for previous and next buttons */
+        #prev-rt {
+            left: 20px;
+        }
+
+        #next-rt {
+            right: 20px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .card-rt {
+                min-width: 33.33%; /* Show 3 cards at a time */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .card-rt {
+                min-width: 50%; /* Show 2 cards at a time */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card-rt {
+                min-width: 45%; /* Show 1 card at a time */
+            }
+            #prev-rt, #next-rt {
+                top: calc(50%);
+                transform: translateY(-50%);
+                padding: 5px;
+                width: 40px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<div>
+
+    <!-- Testimonial Slider Section -->
+    <section class="testimonial-slider-rt">
+        <h2>More from <span class="highlight-rt">our members</span></h2>
+        <div class="slider-rt">
+            <div class="slider-inner-rt">
+                <!-- Testimonial Card 1 -->
+                <div class="card-rt">
+                    <h3>Jessica Miller</h3>
+                    <div class="stars-rt">★★★★★</div>
+                    <p>Dr. Richardson is very knowledgeable and thorough. Staff is very courteous and polite. Her recommendations to save money on pharmacy and labs really helped our family control the cost of our care. We will go for my husband's treatment to Dr. Richardson too.</p>
+                    <span class="badge-rt">Dr. Karen Weight Loss Program Member</span>
+                </div>
+                <!-- Testimonial Card 2 -->
+                <div class="card-rt">
+                    <h3>Ashley Martin</h3>
+                    <div class="stars-rt">★★★★★</div>
+                    <p>I wanted to start on GLP-1 medications and Dr. Richardson gave me incredible guidance. I was able to get my prescription and save thousands of dollars due to her recommendations of pharmacies that give discounts. Dr. Richardson was kind.
+
+</p>
+                    <span class="badge-rt">Dr. Karen Weight Loss Program Member</span>
+                </div>
+                <!-- Testimonial Card 3 -->
+                <div class="card-rt">
+                    <h3>Emily Johnson</h3>
+                    <div class="stars-rt">★★★★★</div>
+                    <p>I went in to check issues I was having with my colon, I was in a panic, and was not feeling my best. Dr. Richardson was kind and very understanding with great patient-relationship skills. She is genuine and truly professional. Her staff is great and wonderful.
+
+</p>
+                    <span class="badge-rt">Dr. Karen Weight Loss Program Member</span>
+                </div>
+                <!-- Testimonial Card 4 -->
+                <div class="card-rt">
+                    <h3>Megan Wilson</h3>
+                    <div class="stars-rt">★★★★★</div>
+                    <p>I typically hate spending money at the doctor because of the run around and surprise costs. This experience changed my view of doctors. I got excellent care and the fact that the doctor actually showed me how to save money on my tests and medications was incredible.
+
+</p>
+                    <span class="badge-rt">Dr. Karen Weight Loss Program Member</span>
+                </div>
+                <!-- Testimonial Card 5 -->
+                <div class="card-rt">
+                    <h3>Jessica Miller</h3>
+                    <div class="stars-rt">★★★★★</div>
+                    <p>Dr. Richardson is very knowledgeable and thorough. Staff is very courteous and polite. Her recommendations to save money on pharmacy and labs really helped our family control the cost of our care. We will go for my husband's treatment to Dr. Richardson too.
+
+</p>
+                    <span class="badge-rt">Dr. Karen Weight Loss Program Member</span>
+                </div>
+            </div>
+        </div>
+        <!-- Slider Controls -->
+        <div class="slider-controls-rt">
+            <button id="prev-rt">❮</button>
+            <button id="next-rt">❯</button>
+        </div>
+    </section>
+
+    <!-- JavaScript for Slider Functionality -->
+    <script>
+        let currentIndex = 0;
+        const cards = document.querySelectorAll('.card-rt');
+        const totalCards = cards.length;
+        const sliderInner = document.querySelector('.slider-inner-rt');
+        
+        // Update cardsToShow based on screen width
+        function getCardsToShow() {
+            if (window.innerWidth <= 480) return 1;
+            if (window.innerWidth <= 768) return 2;
+            if (window.innerWidth <= 1200) return 3;
+            return 4;
+        }
+
+        function updateSlider() {
+            const cardWidth = document.querySelector('.card-rt').offsetWidth;
+            const cardsToShow = getCardsToShow();
+            sliderInner.style.transform = `translateX(-${currentIndex * (cardWidth + 20)}px)`;
+        }
+
+        document.getElementById('next-rt').addEventListener('click', () => {
+            const cardsToShow = getCardsToShow();
+            if (currentIndex < totalCards - cardsToShow) {
+                currentIndex++;
+            } else {
+                currentIndex = 0;
+            }
+            updateSlider();
+        });
+
+        document.getElementById('prev-rt').addEventListener('click', () => {
+            const cardsToShow = getCardsToShow();
+            if (currentIndex > 0) {
+                currentIndex--;
+            } else {
+                currentIndex = totalCards - cardsToShow;
+            }
+            updateSlider();
+        });
+
+        window.addEventListener('resize', updateSlider);
+    </script>
+
+</div>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Testimonial Card</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .t4video-card {
+      position: relative;
+      width: 100%;
+      max-width: 320px;
+      border-radius: 12px;
+      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+    }
+
+    .t4video-card video {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+
+    .t4video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 15px;
+    }
+
+    .t4header {
+      display: flex;
+      flex-direction: column;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7); /* Subtle shadow for readability */
+    }
+
+    .t4name {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .t4role {
+      font-size: 0.9rem;
+      margin-top: 4px;
+    }
+
+    .t4testimonial {
+      font-size: 0.85rem;
+      line-height: 1.3;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7); /* Subtle shadow for readability */
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="t4video-card">
+  <video autoplay muted loop playsinline>
+    <source src="https://storage.googleapis.com/msgsndr/cATO2YqTT0kIVC9TeLUN/media/67233f8da7b04706beeaee45.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="t4video-overlay">
+    <div class="t4header">
+      <div class="t4name">Grace</div>
+      <div class="t4role">OptimalMD Member
+</div>
+    </div>
+    <div class="t4testimonial">"The support from Dr. Karen and her team helped me break free from old cycles. I’m more confident than ever and feel motivated to keep moving forward with my wellness goals."</div>
+  </div>
+</div>
+
+</body>
+</html>
