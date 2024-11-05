@@ -6,22 +6,22 @@
         margin: 0;
     }
 
-    .button {
+    .button-ht {
         border: none;
     }
 
-    .btn-text {
+    .btn-text-ht {
         display: grid;
         gap: 10px;
     }
 
-    .btn-title {
+    .btn-title-ht {
         font-size: 17px;
         font-weight: 600;
         font-family: 'Poppins', sans-serif;
     }
 
-    .btn {
+    .btn-ht {
         position: relative;
         outline: none;
         border: none;
@@ -36,15 +36,15 @@
         transition: transform 0.3s ease;
     }
 
-    .btn:hover {
+    .btn-ht:hover {
         transform: scale(1.03);
     }
 
-    .btn:active {
+    .btn-ht:active {
         transform: scale(0.95);
     }
 
-    .btn>.shine {
+    .btn-ht > .shine-ht {
         position: absolute;
         height: 250%;
         width: 100px;
@@ -52,10 +52,10 @@
         left: -60px;
         background: linear-gradient(90deg, #ffffff00, #ffffff77, #ffffff00);
         transform: rotate(-45deg) translateY(-35%);
-        animation: shine 2s ease infinite;
+        animation: shine-ht 2s ease infinite;
     }
 
-    @keyframes shine {
+    @keyframes shine-ht {
         0% {
             left: -100%;
         }
@@ -69,10 +69,10 @@
 </style>
 
 <div>
-    <button class="btn button" onclick="window.location.href='https://promedrx.co/survey-form-page-7062';">
-        <span class="btn-text">
-            <p class="btn-title"><i class="fa-solid fa-calendar-days"></i> Schedule An Appointment</p>
+    <button class="btn-ht button-ht" onclick="window.location.href='';">
+        <span class="btn-text-ht">
+            <p class="btn-title-ht"><i class="fa-solid fa-calendar-days"></i> Schedule An Appointment</p>
         </span>
-        <div class="shine"></div>
+        <div class="shine-ht"></div>
     </button>
 </div>
