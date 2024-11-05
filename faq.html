@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Test Cards</title>
+    <style>
+        .edn-quality-panel-xy {
+          font-family: "Poppins", sans-serif;
+            width: 450px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: max-height 0.6s ease, padding 0.6s ease;
+            max-height: 150px;
+        }
+
+        .edn-quality-panel-xy.expanded-xy {
+            max-height: 300px; /* Adjust this value depending on content height */
+            padding-bottom: 15px; /* Adds padding to bottom when expanded */
+        }
+
+        .edn-quality-panel-h3-xy {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .edn-quality-panel-tag-xy {
+            display: flex;
+            align-items: center;
+            color: #fff;
+            background-color: #6bb856;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .edn-quality-panel-tag-xy img {
+            width: 15px;
+            height: 15px;
+            margin-right: 5px;
+        }
+
+        .edn-quality-panel-data-xy {
+            padding: 0 15px 10px;
+            font-size: 12px;
+            color: #ccc;
+            display: flex;
+            align-items: center;
+        }
+
+        .data-label-xy {
+            margin-right: 5px;
+            color: #888;
+        }
+
+        .data-block-xy {
+            background-color: #EAEAEA;
+            height: 10px;
+            width: 80px;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+
+        .edn-quality-panel-txt-xy {
+            padding: 0 15px 15px;
+            font-size: 14px;
+            color: #333;
+            display: none;
+        }
+
+        .edn-quality-panel-xy.expanded-xy .edn-quality-panel-txt-xy {
+            display: block;
+        }
+
+        .edn-quality-panel-link-xy {
+            padding: 0 15px 15px;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            font-weight: bold;
+            color: #888;
+        }
+
+        .icon-xy {
+            margin-right: 5px;
+            font-weight: bold;
+        }
+
+        .learn-more-xy {
+            display: flex;
+        }
+
+        .close-btn-xy {
+            display: none;
+        }
+
+        .edn-quality-panel-xy.expanded-xy .learn-more-xy {
+            display: none;
+        }
+
+        .edn-quality-panel-xy.expanded-xy .close-btn-xy {
+            display: flex;
+        }
+        @media (max-width: 768px) {
+             .edn-quality-panel-xy {
+          font-family: "Poppins", sans-serif;
+               width: 300px;
+               display:grid;
+               justify-content: center;
+          }
+        }
+    </style>
+</head>
+<body>
+
+<div class="edn-quality-panel-xy" onclick="togglePanel(this)">
+    <h3 class="edn-quality-panel-h3-xy">
+        Potency Testing
+
+        <span class="edn-quality-panel-tag-xy">
+            <img src="https://storage.googleapis.com/msgsndr/cATO2YqTT0kIVC9TeLUN/media/672477ffd5c2465c59ce24a8.svg" alt="Passed Icon">
+            Passed
+        </span>
+    </h3>
+    <div class="edn-quality-panel-data-xy">
+        <span class="data-label-xy">Date:</span>
+        <div class="data-block-xy"></div>
+        <span class="data-label-xy">Lab:</span>
+        <div class="data-block-xy"></div>
+    </div>
+    <div class="edn-quality-panel-txt-xy">
+       Conducted every 3 to 6 months, this test confirms that each medication meets its required concentration, with a variance of no more than ±10% to ensure optimal efficacy.
+
+
+    </div>
+    <div class="edn-quality-panel-link-xy learn-more-xy">
+        <span class="icon-xy">+</span>
+        <span>Learn more</span>
+    </div>
+    <div class="edn-quality-panel-link-xy close-btn-xy">
+        <span class="icon-xy">×</span>
+        <span>Close</span>
+    </div>
+</div>
+
+<div class="edn-quality-panel-xy" onclick="togglePanel(this)">
+    <h3 class="edn-quality-panel-h3-xy">
+       Sterility Testing
+        <span class="edn-quality-panel-tag-xy">
+            <img src="https://storage.googleapis.com/msgsndr/cATO2YqTT0kIVC9TeLUN/media/672477ffd5c2465c59ce24a8.svg" alt="Passed Icon">
+            Passed
+        </span>
+    </h3>
+    <div class="edn-quality-panel-data-xy">
+        <span class="data-label-xy">Date:</span>
+        <div class="data-block-xy"></div>
+        <span class="data-label-xy">Lab:</span>
+        <div class="data-block-xy"></div>
+    </div>
+    <div class="edn-quality-panel-txt-xy">
+      To protect against contamination, all medications are tested to meet stringent sterility standards, ensuring they are free from bacteria and pathogens. Our protocols adhere to USP 797 guidelines for added security.
+
+
+    </div>
+    <div class="edn-quality-panel-link-xy learn-more-xy">
+        <span class="icon-xy">+</span>
+        <span>Learn more</span>
+    </div>
+    <div class="edn-quality-panel-link-xy close-btn-xy">
+        <span class="icon-xy">×</span>
+        <span>Close</span>
+    </div>
+</div>
+
+<div class="edn-quality-panel-xy" onclick="togglePanel(this)">
+    <h3 class="edn-quality-panel-h3-xy">
+       pH Balance Testing
+
+        <span class="edn-quality-panel-tag-xy">
+            <img src="https://storage.googleapis.com/msgsndr/cATO2YqTT0kIVC9TeLUN/media/672477ffd5c2465c59ce24a8.svg" alt="Passed Icon">
+            Passed
+        </span>
+    </h3>
+    <div class="edn-quality-panel-data-xy">
+        <span class="data-label-xy">Date:</span>
+        <div class="data-block-xy"></div>
+        <span class="data-label-xy">Lab:</span>
+        <div class="data-block-xy"></div>
+    </div>
+    <div class="edn-quality-panel-txt-xy">
+      This test ensures that the medication's pH is balanced for minimal irritation, providing a comfortable experience with every dose.
+
+
+    </div>
+    <div class="edn-quality-panel-link-xy learn-more-xy">
+        <span class="icon-xy">+</span>
+        <span>Learn more</span>
+    </div>
+    <div class="edn-quality-panel-link-xy close-btn-xy">
+        <span class="icon-xy">×</span>
+        <span>Close</span>
+    </div>
+</div>
+
+<div class="edn-quality-panel-xy" onclick="togglePanel(this)">
+    <h3 class="edn-quality-panel-h3-xy">
+       Endotoxin Testing
+
+        <span class="edn-quality-panel-tag-xy">
+            <img src="https://storage.googleapis.com/msgsndr/cATO2YqTT0kIVC9TeLUN/media/672477ffd5c2465c59ce24a8.svg" alt="Passed Icon">
+            Passed
+        </span>
+    </h3>
+    <div class="edn-quality-panel-data-xy">
+        <span class="data-label-xy">Date:</span>
+        <div class="data-block-xy"></div>
+        <span class="data-label-xy">Lab:</span>
+        <div class="data-block-xy"></div>
+    </div>
+    <div class="edn-quality-panel-txt-xy">
+      Verified alongside sterility, this test ensures that medications are free from harmful toxins, preventing adverse reactions and upholding our commitment to patient safety.
+
+
+    </div>
+    <div class="edn-quality-panel-link-xy learn-more-xy">
+        <span class="icon-xy">+</span>
+        <span>Learn more</span>
+    </div>
+    <div class="edn-quality-panel-link-xy close-btn-xy">
+        <span class="icon-xy">×</span>
+        <span>Close</span>
+    </div>
+</div>
+
+<script>
+    function togglePanel(panel) {
+        panel.classList.toggle('expanded-xy');
+    }
+</script>
+
+</body>
+</html>

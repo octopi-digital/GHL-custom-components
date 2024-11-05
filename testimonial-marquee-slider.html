@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonial Marquee</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        .testimonial-marquee {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+            padding: 0px 0;
+        }
+
+        .marquee-container {
+            display: flex;
+            width: max-content;
+            animation: scroll-left 30s linear infinite;
+            gap: 10px;
+        }
+
+        .testimonial {
+            flex: 0 0 auto;
+            text-align: center;
+            position: relative;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px 5px rgba(255, 255, 255, 0.6);
+        }
+
+        .testimonial-img {
+            width: 350px;
+            /* max-height: 250px; */
+            height: auto;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        .testimonial-name {
+            /* margin-top: 10px; */
+            font-weight: bold;
+            font-size: 1.1em;
+            color: white;
+        }
+
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Pause animation on hover */
+        .marquee-container:hover {
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+<body>
+    <section class="testimonial-marquee">
+        <div class="marquee-container">
+            <!-- Original Testimonials -->
+            
+            <div class="testimonial">
+                <img src="https://storage.googleapis.com/msgsndr/cATO2YqTT0kIVC9TeLUN/media/6723eb01a7b0476017ebd3eb.png" class="testimonial-img" ></img>
+                
+            </div>
+            <div class="testimonial">
+                <img src="https://storage.googleapis.com/msgsndr/cATO2YqTT0kIVC9TeLUN/media/6723eb01fcc9871ac8f0b58d.png" class="testimonial-img" ></img>
+             
+            </div>
+           
+            <div class="testimonial">
+                <img src="https://storage.googleapis.com/msgsndr/cATO2YqTT0kIVC9TeLUN/media/6723eb01834a029b9587f24b.png" class="testimonial-img" ></img>
+          
+            </div>
+            <div class="testimonial">
+                <img src="https://storage.googleapis.com/msgsndr/cATO2YqTT0kIVC9TeLUN/media/6723eb018abc734c9dee127f.png" class="testimonial-img" ></img>
+              
+            </div>
+            <div class="testimonial">
+                <img src="https://storage.googleapis.com/msgsndr/cATO2YqTT0kIVC9TeLUN/media/67251d2836727d5b81cbff1b.png" class="testimonial-img" ></img>
+              
+            </div>
+            
+            <!-- Duplicated Testimonials for seamless loop -->
+            <div class="testimonial">
+                <img src="https://storage.googleapis.com/msgsndr/cATO2YqTT0kIVC9TeLUN/media/67251d2880863054af476529.png" class="testimonial-img" ></img>
+              
+            </div>
+            <div class="testimonial">
+                <img src="https://storage.googleapis.com/msgsndr/cATO2YqTT0kIVC9TeLUN/media/6723eb01c5681deaf339d3b5.png" class="testimonial-img" ></img>
+
+            </div>
+            <div class="testimonial">
+                <img src="https://storage.googleapis.com/msgsndr/cATO2YqTT0kIVC9TeLUN/media/6723eb02fed85675a24a8cf7.png" class="testimonial-img" ></img>
+             
+            
+        </div>
+    </section>
+
+    <script>
+        const imgs = document.querySelectorAll('.testimonial-img');
+
+        imgs.forEach(img => {
+            img.addEventListener('mouseenter', () => {
+                document.querySelector('.marquee-container').style.animationPlayState = 'paused';
+            });
+
+            img.addEventListener('mouseleave', () => {
+                document.querySelector('.marquee-container').style.animationPlayState = 'running';
+            });
+        });
+    </script>
+</body>
+</html>

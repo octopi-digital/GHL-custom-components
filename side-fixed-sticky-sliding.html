@@ -1,0 +1,213 @@
+<div>
+    <style>
+        /* Apply Poppins font to the entire page */
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,900&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif !important;
+        }
+
+        /* Container setup */
+        .container-dr {
+            display: flex;
+            align-items: flex-start;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .left-content-dr {
+            flex: 1;
+            padding: 20px;
+            position: sticky;
+            top: 200px;
+            align-self: flex-start;
+            height: fit-content;
+        }
+
+        .left-content-dr h1 {
+            font-size: 36px;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        .left-content-dr h1 span {
+            color: #008080;
+            font-weight: 700;
+        }
+
+        .left-content-dr p {
+            font-size: 18px;
+            line-height: 1.5;
+            margin-top: 20px;
+        }
+
+        /* Timeline setup */
+        .timeline-dr {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 20px;
+            flex-shrink: 0;
+        }
+
+        .dot-dr {
+            width: 20px;
+            height: 20px;
+            background-color: #c4e5b1;
+            border-radius: 50%;
+            position: absolute;
+            left: -10px; /* Center dots horizontally */
+            z-index: 1;
+        }
+
+        .line-container-dr {
+            position: absolute;
+            width: 2px;
+            top: 0;
+        }
+
+        .line-dr.dashed-dr {
+            width: 2px;
+            height: 100%;
+            background: repeating-linear-gradient(
+                to bottom,
+                #a8d5a3,
+                #a8d5a3 5px,
+                transparent 5px,
+                transparent 10px
+            );
+        }
+
+        /* Solid line that grows on scroll */
+        .line-dr.solid-dr {
+            position: absolute;
+            width: 2px;
+            height: 0;
+            background-color: #6aa84f;
+            top: 0;
+            transition: height 0.3s ease; /* Smooth transition for solid line growth */
+        }
+
+        /* Right content */
+        .right-content-dr {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .right-content-dr h2 {
+            font-size: 24px;
+            margin-top: 0;
+        }
+
+        .right-content-dr p {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .section-image-dr {
+            width: 100%;
+            margin-top: 15px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+
+        /* Media query for small screens */
+        @media (max-width: 768px) {
+            .container-dr {
+                flex-direction: column;
+            }
+
+            .timeline-dr {
+                display: none;
+            }
+
+            .left-content-dr {
+                position: static;
+                width: 100%;
+            }
+        }
+    </style>
+
+    <div class="container-dr">
+        <div class="left-content-dr">
+            <h1>
+                Start Your Personalized Health Journey with Dr. Karen Richardson
+            </h1>
+            <p>
+                By focusing on the underlying causes of weight and metabolic health issues, we help you achieve lasting improvements in how you feel and perform every day.
+            </p>
+        </div>
+
+        <div class="timeline-dr">
+            <div class="line-container-dr" id="dashedLine">
+                <div class="line-dr dashed-dr"></div>
+                <div class="line-dr solid-dr" id="solidLine-dr"></div>
+            </div>
+            <div class="dot-dr" id="dot1"></div>
+            <div class="dot-dr" id="dot2"></div>
+            <div class="dot-dr" id="dot3"></div>
+            <div class="dot-dr" id="dot4"></div>
+        </div>
+
+        <div class="right-content-dr">
+            <h2>Step 1: Complete a Quick Health Questionnaire</h2>
+            <p>Begin with a brief survey to share your health background and wellness goals. This helps us understand your unique needs and customize your care. In some cases, additional tests may be recommended to provide the most effective guidance.</p>
+            <img src="https://storage.googleapis.com/msgsndr/cATO2YqTT0kIVC9TeLUN/media/67235c77bd892a2ebb95da81.gif" alt="Questionnaire Image" class="section-image-dr">
+
+            <h2>Step 2: Connect with a Medical Professional</h2>
+            <p>Schedule a convenient online consultation from the comfort of your own space. Dr. Richardson or a licensed provider will review your health profile and work with you to develop a personalized wellness plan that aligns with your lifestyle and goals.</p>
+            <img src="https://storage.googleapis.com/msgsndr/cATO2YqTT0kIVC9TeLUN/media/6729b174e0041b20ab0179b6.gif" alt="Consultation Image" class="section-image-dr">
+
+            <h2>Step 3: Home-Delivered, Patient-Centric Care</h2>
+            <p>Once prescribed, your personalized medication is carefully prepared and sent directly to your doorstep. Our pharmacy partners ensure that your medication arrives safely and promptly, so you can stay on track with your wellness plan without any hassle.</p>
+            <img src="https://storage.googleapis.com/msgsndr/cATO2YqTT0kIVC9TeLUN/media/67235c77a7b047b001eafc28.gif" alt="Medication Delivery Image" class="section-image-dr">
+
+            <h2>Step 4: Continuous, Supportive Monitoring</h2>
+            <p>Our commitment doesn’t stop at delivery. Dr. Karen and her team provide ongoing support to help you stay engaged and make adjustments to your plan as needed. Scheduled check-ins and easy access to professional guidance mean you’re never alone on your journey.</p>
+            <img src="https://storage.googleapis.com/msgsndr/cATO2YqTT0kIVC9TeLUN/media/67235c77fa3cb729aff6b42e.gif" alt="Ongoing Support Image" class="section-image-dr">
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener("load", function () {
+            const dashedLine = document.getElementById("dashedLine");
+            const solidLine = document.getElementById("solidLine-dr");
+
+            // Dot elements
+            const dots = [
+                document.getElementById("dot1"),
+                document.getElementById("dot2"),
+                document.getElementById("dot3"),
+                document.getElementById("dot4")
+            ];
+
+            // Set up positions for each dot based on section offsets
+            const sections = document.querySelectorAll(".right-content-dr h2");
+            sections.forEach((section, index) => {
+                dots[index].style.top = `${section.offsetTop + section.offsetHeight / 2 - 10}px`; // Move dots slightly up
+            });
+
+            // Set dashed line height based on the distance from the first to the last section
+            const firstSectionTop = sections[0].offsetTop;
+            const lastSectionBottom = sections[sections.length - 1].nextElementSibling.offsetTop + sections[sections.length - 1].nextElementSibling.offsetHeight;
+
+            dashedLine.style.height = `${lastSectionBottom - firstSectionTop + 300}px`;
+
+            // Update solid line height based on scroll position aligned with the center of the screen
+            window.addEventListener("scroll", function () {
+                const scrollTop = window.pageYOffset;
+                const viewportCenter = window.innerHeight / 2;
+                const maxSolidHeight = lastSectionBottom - firstSectionTop;
+
+                // Calculate the position of the center of the viewport relative to the first section
+                const scrollCenter = scrollTop + viewportCenter - firstSectionTop;
+                const easedScrollPercentage = Math.min(Math.max(scrollCenter / maxSolidHeight, 0), 1);
+
+                // Smoothly adjust the height of the solid line within the dashed line range
+                solidLine.style.height = `${easedScrollPercentage * maxSolidHeight}px`;
+            });
+        });
+    </script>
+</div>

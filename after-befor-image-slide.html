@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Before and After Image Slider</title>
+    <style>
+        .image-t {
+            width: 100%;
+            display: block;
+            pointer-events: none; /* Makes the image non-clickable */
+            user-select: none; /* Disables text/image selection */
+            -webkit-user-drag: none; /* Prevents dragging in WebKit browsers */
+        }
+
+        .container-p {
+            width: 100%;
+            display: block;
+            margin: 30px auto;
+        }
+
+        #before-after-slider-p {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        }
+
+        #after-image-p {
+            display: block;
+        }
+
+        #before-image-p {
+            position: absolute;
+            height: 100%;
+            width: 50%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        #resizer-p {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            z-index: 5;
+            top: 0;
+            left: 50%;
+            height: 100%;
+            width: 4px;
+            background: white;
+            -ms-touch-action: pan-y;
+            touch-action: pan-y;
+        }
+
+        #resizer-p:after {
+            background: #008080;
+            font-family: "Font Awesome 5 Free";
+            content: '\f337';
+            font-weight: 900;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            position: absolute;
+            margin: 0 0 0 -22px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+
+        @media (max-width: 767px) {
+            .container-p {
+                width: 100%;
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="before-after-slider-p">
+    <div id="before-image-p">
+        <img class="image-t" src="https://storage.googleapis.com/msgsndr/cATO2YqTT0kIVC9TeLUN/media/672665e54ff0636a9a90775a.png" alt="before" />
+    </div>
+
+    <div id="after-image-p">
+        <img class="image-t" src="https://storage.googleapis.com/msgsndr/cATO2YqTT0kIVC9TeLUN/media/672665e50a4626bbea41881e.png" alt="After" />
+    </div>
+
+    <div id="resizer-p"></div>
+</div>
+
+<script>
+    const sliderP = document.getElementById('before-after-slider-p');
+    const beforeP = document.getElementById('before-image-p');
+    const beforeImageP = beforeP.getElementsByClassName('image-t')[0];
+    const resizerP = document.getElementById('resizer-p');
+
+    let activeP = false;
+
+    document.addEventListener("DOMContentLoaded", function() {
+        let widthP = sliderP.offsetWidth;
+        beforeImageP.style.width = widthP + 'px';
+    });
+
+    window.addEventListener('resize', function() {
+        let widthP = sliderP.offsetWidth;
+        beforeImageP.style.width = widthP + 'px';
+    });
+
+    resizerP.addEventListener('mousedown', function() {
+        activeP = true;
+        resizerP.classList.add('resize');
+    });
+
+    document.body.addEventListener('mouseup', function() {
+        activeP = false;
+        resizerP.classList.remove('resize');
+    });
+
+    document.body.addEventListener('mouseleave', function() {
+        activeP = false;
+        resizerP.classList.remove('resize');
+    });
+
+    document.body.addEventListener('mousemove', function(e) {
+        if (!activeP) return;
+        let xP = e.pageX;
+        xP -= sliderP.getBoundingClientRect().left;
+        slideItP(xP);
+        pauseEventP(e);
+    });
+
+    resizerP.addEventListener('touchstart', function() {
+        activeP = true;
+        resizerP.classList.add('resize');
+    });
+
+    document.body.addEventListener('touchend', function() {
+        activeP = false;
+        resizerP.classList.remove('resize');
+    });
+
+    document.body.addEventListener('touchcancel', function() {
+        activeP = false;
+        resizerP.classList.remove('resize');
+    });
+
+    document.body.addEventListener('touchmove', function(e) {
+        if (!activeP) return;
+        let xP;
+        for (let i = 0; i < e.changedTouches.length; i++) {
+            xP = e.changedTouches[i].pageX;
+        }
+        xP -= sliderP.getBoundingClientRect().left;
+        slideItP(xP);
+        pauseEventP(e);
+    });
+
+    function slideItP(xP) {
+        let transformP = Math.max(0, Math.min(xP, sliderP.offsetWidth));
+        beforeP.style.width = transformP + "px";
+        resizerP.style.left = transformP + "px";
+    }
+
+    function pauseEventP(e) {
+        if (e.stopPropagation) e.stopPropagation();
+        if (e.preventDefault) e.preventDefault();
+        e.cancelBubble = true;
+        e.returnValue = false;
+        return false;
+    }
+</script>
+
+</body>
+</html>
