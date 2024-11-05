@@ -1,0 +1,78 @@
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<style>
+    p {
+        margin: 0;
+    }
+
+    .button {
+        border: none;
+    }
+
+    .btn-text {
+        display: grid;
+        gap: 10px;
+    }
+
+    .btn-title {
+        font-size: 17px;
+        font-weight: 600;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .btn {
+        position: relative;
+        outline: none;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 8px;
+        overflow: hidden;
+        background: linear-gradient(90deg, #4e2fb0, #2965c7, #fd3e51, #98109c);
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        will-change: transform;
+        transition: transform 0.3s ease;
+    }
+
+    .btn:hover {
+        transform: scale(1.03);
+    }
+
+    .btn:active {
+        transform: scale(0.95);
+    }
+
+    .btn>.shine {
+        position: absolute;
+        height: 250%;
+        width: 100px;
+        top: 0;
+        left: -60px;
+        background: linear-gradient(90deg, #ffffff00, #ffffff77, #ffffff00);
+        transform: rotate(-45deg) translateY(-35%);
+        animation: shine 2s ease infinite;
+    }
+
+    @keyframes shine {
+        0% {
+            left: -100%;
+        }
+        50% {
+            left: 150%;
+        }
+        100% {
+            left: -100%;
+        }
+    }
+</style>
+
+<div>
+    <button class="btn button" onclick="window.location.href='https://promedrx.co/survey-form-page-7062';">
+        <span class="btn-text">
+            <p class="btn-title"><i class="fa-solid fa-calendar-days"></i> Schedule An Appointment</p>
+        </span>
+        <div class="shine"></div>
+    </button>
+</div>

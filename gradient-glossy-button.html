@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .gradient-button {
+            display: flex;
+       
+            gap: 10px;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #FFFFFF;
+            background: linear-gradient(90deg, #4e2fb0, #2965c7, #fd3e51, #98109c);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: transform 0.3s ease;
+            background-size: 300% 300%;
+            animation: gradientAnimation 4s ease infinite;
+        }
+
+        .gradient-button:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    </style>
+</head>
+<body>
+    <button class="gradient-button"><i class="fa-solid fa-calendar-days"></i>Schedule An Appointment</button>
+</body>
+</html>
